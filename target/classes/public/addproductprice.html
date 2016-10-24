@@ -1,0 +1,33 @@
+<div align="right">
+	<a href="#/main">Home</a>
+	<a href="#/products">ProductList</a>
+</div>
+
+<div align="center">
+  <div>
+    <form name="addProduct" ng-submit="AddProduct(productId, currencyCode, priceValue)" class="bordered-image math-operation-form">
+      <div align="left">
+	      <label class="information-label" align="left">Product ID: </label>
+	      <input type="text" required placeholder="Product ID" ng-model="productId" class="input-field"/><br/><br/>
+	      <label class="information-label" align="left">Price: </label>
+	      <input type="text" required placeholder="0" ng-model="priceValue" class="input-field"/><br/><br/>
+	      <div>
+			  <label class="information-label" align="left">Currency: </label>
+			  <select ng-model="currencyCode">
+			    <option value="USD" selected>US Dollar</option>
+			    <option value="CAD">Canadian Dollar</option>
+			    <option value="GBP">Pound Sterling</option>
+			    <option value="AUD">Australian Dollar</option>
+			    <option value="EUR">Euro</option>
+			    <option value="INR">Indian Rupee</option>
+			  </select>
+			  <br/>
+			</div> <br/>
+	      <div align="center">
+	      	<input type="submit" value="Add Product" class="button"/><br/><br/>
+	      </div>
+	      <label class="information-label" align="left">Add Product ID and Price information in the NOSQL Data Store.</label><br>
+      </div>
+    </form><br/><br/>
+  </div>
+</div>

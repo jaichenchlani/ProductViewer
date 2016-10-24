@@ -1,0 +1,86 @@
+/* site.css */
+
+ 	header, footer {
+ 		background-color: lightgray;
+ 		border: solid 1px black;
+ 		font-family: 'Times New Roman', serif;
+ 		font-size: 20px;
+ 		font-weight: bold;
+ 	}
+ 	body {
+ 		font-family: Segoe UI, Arial, Helvetica, sans-serif;
+ 		font-size: 14px;
+ 		background-color: lightgreen;
+ 	}
+
+ 	footer {
+ 		padding: 10px;
+ 		border-radius: : 3px;
+ 	}
+
+
+ 	.math-operation-form {
+ 		padding: 12px;
+ 		width: 300px;
+ 		background-color: white;
+ 		display: inline-block;
+ 		vertical-align: top;
+ 	}
+
+	.bordered-image {
+ 		border: solid 2px #40E;
+ 		border-radius: 4px;
+ 	}
+
+ 	.button {
+ 		background-color: green;
+ 		color: white;
+ 		border-radius: 15px;
+ 		padding: 5px;
+ 		margin-top: 5px;
+ 	}
+
+	a {
+		font-size: 15px;
+ 		font-weight: bold;
+	}
+
+	.input-field {
+		font-size: 15px;
+ 		font-weight: bold;
+	}
+
+
+ 	.operation-label {
+ 		font-weight: bold;
+ 	}
+ 	
+ 	.information-label {
+ 		font-style: italic;	
+ 		font-weight: bold;
+ 	}
+
+ 	.container {
+ 		width: 989px;
+ 		margin: 0 auto;
+ 		background-color: darkgray;
+ 		padding: 5px;
+ 	}
+
+	table, th , td {
+	  border: 2px solid grey;
+	  border-collapse: collapse;
+	  padding: 5px;
+	}
+	
+	th {
+		font-weight: bold;
+	}
+	
+	table tr:nth-child(odd) {
+	  background-color: #f1f1f1;
+	}
+	table tr:nth-child(even) {
+	  background-color: #ffffff;
+	}
+

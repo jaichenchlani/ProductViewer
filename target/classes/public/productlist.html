@@ -1,0 +1,46 @@
+<div align="right">
+	<a href="#/main">Home</a>
+</div>
+
+<br/>
+<a href="#/add" class="button">Add New Product Pricing</a>
+
+<div>
+  <br/> <strong>Order:</strong>
+  <select ng-model="productSortOrder">
+    <option value="+productId" selected>Product ID</option>
+    <option value="+productName">Product Name</option>
+  </select>
+  <br/>
+</div> <br/>
+
+<table align="center">
+  <thead>
+    <tr>
+      <td>Product ID</td>
+      <td>Product Name</td>
+      <td>Currency</td>
+      <td>Price</td>
+      <td>Update Price</td>
+      <td>Delete Product</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="product in products | orderBy:productSortOrder">
+      <td>
+      	<a href="#/product/{{product.productId}}">{{product.productId}}</a>
+      </td>
+      <td align="left">{{product.productName}}</td>
+      <td align="center">{{product.price.currency_code}}</td>
+      <td>
+        <input align="right" type="text" required ng-model="product.price.value"/>
+      </td>
+      <td>
+      	<input type="submit" value="Commit" ng-click="UpdatePrice(product.productId, product.price.value)"/>
+      </td>
+      <td>
+      	<input type="submit" value="Delete" ng-click="DeleteProduct(product.productId)"/>
+      </td>
+    </tr>
+  </tbody>
+</table><br/><br/>

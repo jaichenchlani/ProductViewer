@@ -1,0 +1,56 @@
+<div align="right">
+	<a href="#/main">Home</a>
+	<a href="#/products">ProductList</a>
+</div>
+
+<div>
+  
+  <h2 ng-hide="productError" ng-bind-html-unsafe="productName">Product : {{ productName }}</h2>
+  
+  <h2 ng-show="productError" class="ng-hide">Product ID {{productId}}</br></br>
+  {{ productError }}</h2>
+  
+ <table align="center" ng-hide="productError">
+  <tbody>
+  	<tr>
+	  	<td>Product ID</td>
+	  	<td><strong>{{ productId }}</strong></td>
+  	</tr>
+  	  	<tr>
+	  	<td>Price</td>
+	  	<!--  <td><strong>{{ price }}</strong></td> -->
+	  	<td>
+	  		<strong><a href="#/add">{{price}}</a></strong>
+	  	</td>
+  	</tr>
+  	<tr>
+	  	<td>DPCI</td>
+	  	<td><strong>{{ DPCI }}</strong></td>
+  	</tr>
+  	<tr>
+	  	<td>Parent ID</td>
+	  	<td><strong>{{ parentId }}</strong></td>
+  	</tr>
+  	  	<tr>
+	  	<td>Relation Description</td>
+	  	<td><strong>{{ relationDescription }}</strong></td>
+  	</tr>
+  	<tr>
+	  	<td>Data Page Link</td>
+	  	<td align="left"><a href="{{ dataPageLink }}">
+	  	{{ dataPageLink }}</a></td>
+  	</tr>
+  	  	<tr>
+	  	<td>Product Description</td>
+	  	<td align="left">{{ onlineShortDescription }}</td>
+  	</tr>
+    <tr ng-repeat="feature in features">
+      <td>Feature {{$index+1}}</td>
+      <td align="left">{{feature.feature}}</td>
+    </tr>
+  </tbody>
+</table>
+  
+  <br/>
+  
+</div>
