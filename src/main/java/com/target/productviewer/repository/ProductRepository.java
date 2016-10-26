@@ -30,11 +30,11 @@ public class ProductRepository {
 	
 	private static ObjectMapper mapper = new ObjectMapper();
 	private static final Logger log = LoggerFactory.getLogger(ProductRepository.class);
-	private static Price dataStorePrice = new Price(0, "USD");
 	
 //	Get the price from the NOSQL Data Store
 	public static Price getPriceFromDataStore(String productId) {
 //		log.info("Entering ProductRepository.getPriceFromDataStore...");
+		Price dataStorePrice = new Price(0, "USD");
 		try {
 			GetResponse elasticResponse = ElasticSearch.getDocumentById(ElasticSearch.ES_INDEX, ElasticSearch.ES_TYPE, productId);
 			dataStorePrice = mapper.readValue(elasticResponse.getSourceAsString(), Price.class);		

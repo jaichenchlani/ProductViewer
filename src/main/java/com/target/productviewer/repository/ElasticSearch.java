@@ -13,10 +13,15 @@ import org.elasticsearch.common.settings.ImmutableSettings;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.index.query.QueryBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.target.productviewer.ProductController;
 
 
 public class ElasticSearch {
-
+	
+	private static final Logger log = LoggerFactory.getLogger(ProductController.class);
 	private static TransportClient esClient = null;
     public static String ES_CLUSTERNAME = "elasticsearch";
     public static String ES_HOSTS = "127.0.0.1:9300";
@@ -26,7 +31,8 @@ public class ElasticSearch {
 
     static {
         try {
-            ElasticSearch.connect();
+            log.info("Connecting to ElasticSearch Data Store");
+        	ElasticSearch.connect();
         }
         catch(Exception e) {
             System.out.println("Error instantiating ElasticSearchManager " +e.getMessage());
@@ -34,9 +40,7 @@ public class ElasticSearch {
         }
     }
 
-
     public static boolean connect() throws Exception {
-
 
         Settings settings = ImmutableSettings.settingsBuilder()
                 .put("client.transport.ping_timeout", ES_TRANSPORT_PING_TIMEOUT_IN_SECS+"s")
@@ -64,29 +68,12 @@ public class ElasticSearch {
                 .setSize(size)
                 .execute().actionGet();
     }
-
-//    public static GetResponse getDocumentById(String index, String type, String docId, String routing) {
-////        GetRequestBuilder builder = esClient.prepareGet(index, type, docId);
-//        if(routing != null && !routing.equalsIgnoreCase(""))
-//            builder = builder.setRouting(routing);
-//        return builder.get();
-//    }
     
     public static GetResponse getDocumentById(String index, String type, String docId) {
     	return esClient.prepareGet(ES_INDEX, ES_TYPE, docId)
     			.execute()
     			.actionGet();
     }
-
-//    public static IndexResponse setDocumentById(String index, String type, String docId, String routing, String json) {
-//        IndexRequestBuilder request = esClient.prepareIndex(index, type)
-//                .setId(docId)
-//                .setSource(json);
-//
-//        if(routing != null && !routing.equalsIgnoreCase(""))
-//            request.setRouting(routing);
-//        return request.get();
-//    }
 
     public static IndexResponse setDocumentById(String index, String type, String docId, String json) {
         IndexRequestBuilder request = esClient.prepareIndex(index, type)
@@ -95,15 +82,6 @@ public class ElasticSearch {
         return request.get();
     }
     
-    
-//    public static DeleteResponse deleteDocumentById(String index, String type, String docId, String routing) {
-//        DeleteRequestBuilder builder = esClient.prepareDelete(index, type, docId);
-//
-//        if(routing != null && !routing.equalsIgnoreCase(""))
-//            builder.setRouting(routing);
-//
-//        return builder.get();
-//    }
     
     public static DeleteResponse deleteDocumentById(String index, String type, String docId) {
         DeleteRequestBuilder builder = esClient.prepareDelete(index, type, docId);
