@@ -9,7 +9,7 @@
         
         var onProductListComplete = function(data){
 
-        	$log.info("From onProductListComplete...");
+//        	$log.info("From onProductListComplete...");
         	$log.info(data);
         	$scope.products = data;
         }
@@ -21,7 +21,7 @@
         
 //      Refresh the product list post the Price UPDATE is complete on the back end
         var onUpdatePriceComplete = function(data) {
-        	$log.info("From onUpdatePriceComplete...");
+//        	$log.info("From onUpdatePriceComplete...");
         	$log.info(data);
         	$scope.products = data;
         	myRetail.getProductList().then(onProductListComplete, onError);
@@ -47,12 +47,12 @@
         	myRetail.updatePrice(productId, newValue).then(onUpdatePriceComplete, onError);
         }
         
-        console.log("from ProductListController..");
+//      console.log("from ProductListController..");
         $scope.productSortOrder = "+productId";
         myRetail.getProductList().then(onProductListComplete, onError);
     }
     
-    console.log("ProductListController.js..");
+//  console.log("ProductListController.js..");
 //  Register the controller
     app.controller("ProductListController", ProductListController);
 
