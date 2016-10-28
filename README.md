@@ -1,12 +1,12 @@
 # myRetail Product Viewer
 
-### **Introduction:**
+## **Introduction:**
 This is a sample case study. The goal for this exercise is to create an end-to-end Proof-of-Concept for a products API, which will aggregate product data from multiple sources and return it as JSON to the caller. 
 
-### **Functionality Covered:**
+## **Functionality Covered:**
 All 4 operations i.e. GET(by product as well as bulk), POST, PUT and DELETE.
 
-### **Tech Stack:**
+## **Tech Stack:**
 * Front End: **Angular Js**
 * Back End Programming Language: **Java**
 * Web App Framework: **Spring Boot**
@@ -37,7 +37,7 @@ All 4 operations i.e. GET(by product as well as bulk), POST, PUT and DELETE.
 
   d. Search for keywords to shortlist the entries in the table.
 
-  c. Sort by Product ID or Product Name.
+  e. Sort by Product ID or Product Name.
   
 4. Product Detail Page: 
 
