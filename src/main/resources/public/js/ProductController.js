@@ -8,7 +8,7 @@
         
         var onProductComplete = function(data){
 
-        	$log.info("From onProductComplete...");
+//        	$log.info("From onProductComplete...");
         	$log.info(data);
 
         	$scope.productId = data.productId;
@@ -51,12 +51,12 @@
         	$scope.error = "Could not fetch the Data.";
         };
         
-        console.log("from ProductController..");
+//      console.log("from ProductController..");
         $scope.productId = $routeParams.productId;
         myRetail.getProductDetails($scope.productId).then(onProductComplete, onError);
     }
     
-    console.log("ProductController.js..");
+//  console.log("ProductController.js..");
 //  Register the controller
     app.controller("ProductController", ProductController);
 

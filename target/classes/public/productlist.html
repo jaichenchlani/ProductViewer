@@ -3,10 +3,12 @@
 </div>
 
 <br/>
-<a href="#/add" class="button">Add New Product Pricing</a>
+<a href="#/add" class="button">Add New Product Pricing</a><br/></br>
 
 <div>
-  <br/> <strong>Order:</strong>
+  <label class="information-label" align="left">Search: </label>
+  <input type="text" placeholder="Search..." ng-model="searchInResults"/>
+  <strong>Order:</strong>
   <select ng-model="productSortOrder">
     <option value="+productId" selected>Product ID</option>
     <option value="+productName">Product Name</option>
@@ -26,7 +28,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="product in products | orderBy:productSortOrder">
+    <tr ng-repeat="product in products | orderBy:productSortOrder | filter:searchInResults">
       <td>
       	<a href="#/product/{{product.productId}}">{{product.productId}}</a>
       </td>

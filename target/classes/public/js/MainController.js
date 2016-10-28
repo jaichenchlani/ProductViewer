@@ -15,10 +15,10 @@
         	}
         }
         
-        console.log("from MainController..");
+//      console.log("from MainController..");
     }
     
-    console.log("MainController.js..");
+//  console.log("MainController.js..");
 //  Register the controller
     app.controller("MainController", MainController);
 

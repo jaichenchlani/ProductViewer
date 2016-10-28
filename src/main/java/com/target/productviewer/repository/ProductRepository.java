@@ -30,11 +30,11 @@ public class ProductRepository {
 	
 	private static ObjectMapper mapper = new ObjectMapper();
 	private static final Logger log = LoggerFactory.getLogger(ProductRepository.class);
-	private static Price dataStorePrice = new Price(0, "USD");
 	
 //	Get the price from the NOSQL Data Store
 	public static Price getPriceFromDataStore(String productId) {
 //		log.info("Entering ProductRepository.getPriceFromDataStore...");
+		Price dataStorePrice = new Price(0, "USD");
 		try {
 			GetResponse elasticResponse = ElasticSearch.getDocumentById(ElasticSearch.ES_INDEX, ElasticSearch.ES_TYPE, productId);
 			dataStorePrice = mapper.readValue(elasticResponse.getSourceAsString(), Price.class);		
@@ -117,11 +117,11 @@ public class ProductRepository {
 		int batchSize = 500;
 		while(true) {
 			SearchResponse response = ElasticSearch.search(ElasticSearch.ES_INDEX, ElasticSearch.ES_TYPE, queryBuilder, from, batchSize);
-			List<Product> thisBatchMovies = buildProductList(response);
-			productList.addAll(thisBatchMovies);
+			List<Product> thisBatchProducts = buildProductList(response);
+			productList.addAll(thisBatchProducts);
 			
 //			If the total search results are <= the batch size, break the while loop.
-			if (thisBatchMovies.size() <= batchSize) {
+			if (thisBatchProducts.size() <= batchSize) {
 				break;
 			}
 			from += batchSize;
@@ -130,7 +130,7 @@ public class ProductRepository {
 		return productList;
 	}
 	
-//	This method extracts movies from the Search Response.
+
 //	Access modifier is marked as PRIVATE, as this method is not supposed to be called from outside of this class.
 	private static List<Product> buildProductList(SearchResponse response) throws IOException {
 //		log.info("Entering ProductRepository.buildProductList...");

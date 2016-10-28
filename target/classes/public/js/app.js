@@ -1,8 +1,7 @@
 (function() {
   
   var app = angular.module("productViewer", ["ngRoute"]);
-  console.log("From App.js....");
-  console.log(app);
+//  console.log("From App.js....");
   
   app.config(function($routeProvider) {
     $routeProvider
