@@ -118,6 +118,7 @@ public class ProductRepository {
 		while(true) {
 			SearchResponse response = ElasticSearch.search(ElasticSearch.ES_INDEX, ElasticSearch.ES_TYPE, queryBuilder, from, batchSize);
 			List<Product> thisBatchProducts = buildProductList(response);
+			productList.addAll(thisBatchProducts);
 			
 //			If the total search results are <= the batch size, break the while loop.
 			if (thisBatchProducts.size() <= batchSize) {
