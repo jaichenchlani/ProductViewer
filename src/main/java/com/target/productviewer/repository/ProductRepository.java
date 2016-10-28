@@ -117,11 +117,10 @@ public class ProductRepository {
 		int batchSize = 500;
 		while(true) {
 			SearchResponse response = ElasticSearch.search(ElasticSearch.ES_INDEX, ElasticSearch.ES_TYPE, queryBuilder, from, batchSize);
-			List<Product> thisBatchMovies = buildProductList(response);
-			productList.addAll(thisBatchMovies);
+			List<Product> thisBatchProducts = buildProductList(response);
 			
 //			If the total search results are <= the batch size, break the while loop.
-			if (thisBatchMovies.size() <= batchSize) {
+			if (thisBatchProducts.size() <= batchSize) {
 				break;
 			}
 			from += batchSize;
@@ -130,7 +129,7 @@ public class ProductRepository {
 		return productList;
 	}
 	
-//	This method extracts movies from the Search Response.
+
 //	Access modifier is marked as PRIVATE, as this method is not supposed to be called from outside of this class.
 	private static List<Product> buildProductList(SearchResponse response) throws IOException {
 //		log.info("Entering ProductRepository.buildProductList...");
