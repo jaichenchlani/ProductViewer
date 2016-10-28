@@ -39,6 +39,8 @@ All 4 operations i.e. GET(by product as well as bulk), POST, PUT and DELETE.
 
   e. Sort by Product ID or Product Name.
   
+  f. Add new Product and Pricing to the NOSQL Data Store.
+  
 4. Product Detail Page: 
 
   a. View Product Informaiton.
