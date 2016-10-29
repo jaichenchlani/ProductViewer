@@ -74,9 +74,9 @@ public class ProductController {
 //		Adding error handling when ElasticSearch is unreachable.
 		List<Product> productList = new ArrayList<Product>();
 		try {
-			log.info("Before calling getAllProductsFromDataStore...");
+//			log.info("Before calling getAllProductsFromDataStore...");
 			productList = ProductRepository.getAllProductsFromDataStore();
-			log.info("After calling getAllProductsFromDataStore...");
+//			log.info("After calling getAllProductsFromDataStore...");
 		} catch (IOException e) {
 			log.info("IO Exception in ProductController.getProducts.");
 			e.printStackTrace();
