@@ -30,30 +30,38 @@
     var addProduct = function(productId, currencyCode, priceValue) {
     	var myUrl = "http://localhost:8080/api/v1/products/"
     	myUrl += productId;
-	    myUrl += "/";
-	    myUrl += currencyCode;
-	    myUrl += "/";
-	    myUrl += priceValue;
+	    var price = {
+		    	"value": priceValue,
+		    	"currency_code": currencyCode
+		    }
     	console.log(myUrl);
-	    return $http.post(myUrl)
-	                  .then(function(response) {
-	                    return response.data;
-	                  });
+	    return $http({
+	        url: myUrl,
+	        method: "POST",
+	        data: price
+	    })
+	    .then(function(response) {
+	    	return response.data;
+	    });
     };
     
     
-//	PUT i.e. Update pricing information for the Product ID in the NOSQL Data Store.
-//	Called from ProductListController.
     var updatePrice = function(productId, newValue) {
 	    var myUrl = "http://localhost:8080/api/v1/products/"
     	myUrl += productId;
-	    myUrl += "/";
-	    myUrl += newValue;
+	    var price = {
+	    	"value": newValue,
+	    	"currency_code": "USD"
+	    }
     	console.log(myUrl);
-	    return $http.put(myUrl)
-	                  .then(function(response) {
-	                    return response.data;
-	                  });
+	    return $http({
+	        url: myUrl,
+	        method: "PUT",
+	        data: price
+	    })
+	    .then(function(response) {
+	    	return response.data;
+	    });
     };
     
 //	DELETE the pricing information for the Product ID in the NOSQL Data Store.

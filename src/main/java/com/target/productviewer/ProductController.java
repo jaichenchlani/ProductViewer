@@ -16,8 +16,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -45,6 +47,7 @@ public class ProductController {
 	private static ObjectMapper mapper = new ObjectMapper();
 	Product product = new Product();
 	
+//	Returning Product Details for a single product based on Product ID
 	@JsonIgnoreProperties
 	@RequestMapping(value = "products/{productId}", method = RequestMethod.GET)
 	public Product getProductById(@PathVariable(value="productId") String productId) {
@@ -65,9 +68,9 @@ public class ProductController {
 		return product;
 	}
 	
+//	Get all the product price details from the Data Store
 	@RequestMapping(value = "products", method = RequestMethod.GET)
 	public List<Product> getProducts() {
-//		Get all the product price details from the Data Store
 		List<Product> productList = new ArrayList<Product>();
 		try {
 			productList = ProductRepository.getAllProductsFromDataStore();
@@ -79,20 +82,8 @@ public class ProductController {
 		return productList;
 	}
 	
-	@RequestMapping(value = "products/{productId}/{currency_code}/{value}", method = RequestMethod.POST)
-	public void addProductPrice(@PathVariable(value="productId") String productId, 
-								@PathVariable(value="currency_code") String currency_code,
-								@PathVariable(value="value") String value) {
-		double priceValue = 0;
-		System.out.println("String Parameter Price:" + value);
-		try {
-			priceValue = Double.parseDouble(value);
-		}
-		catch (Exception e) {
-			log.info("Price Value is not Numeric. Exiting without updates.");
-		}
-		System.out.println("Converted to Double Price:" + priceValue);
-		Price price = new Price(priceValue, currency_code);
+	@RequestMapping(value = "products/{productId}", method = RequestMethod.POST)
+	public void addProductPrice(@RequestBody Price price, @PathVariable(value="productId") String productId) {
 		
 //		updateProductPrice is the common function used for both POST and PUT
 		try {
@@ -104,30 +95,20 @@ public class ProductController {
 		
 //		Heading back to the UI.
 		log.info("Product ID " + productId + " ADDED in the NOSQL Data Store.");
-		
 	}
 	
-	@RequestMapping(value = "products/{productId}/{value}", method = RequestMethod.PUT)
-	public void updateProductPrice(@PathVariable(value="productId") String productId, @PathVariable(value="value") String value) {
-		double newValue = 0;
-		try {
-			newValue = Double.parseDouble(value);
-		}
-		catch (Exception e) {
-			log.info("New Price Value is not Numeric. Exiting without updates.");
-		}
-		
-		Price price = new Price(newValue);
+
+	@RequestMapping(value = "products/{productId}", method = RequestMethod.PUT)
+	public void updateProductPrice(@RequestBody Price price, @PathVariable(value="productId") String productId) {
 		
 //		updateProductPrice is the common function used for both POST and PUT
 		try {
-//			log.info("Calling ProductRepository.updateProductPrice...");
-			ProductRepository.updateProductPrice(productId, price);
-		} catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-		
-//		Leverage the getProducts() function to return the product list.
+//				log.info("Calling ProductRepository.updateProductPrice...");
+				ProductRepository.updateProductPrice(productId, price);
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+
 		log.info("Product ID " + productId + " UPDATED in the NOSQL Data Store.");
 	}
 	

@@ -10,7 +10,7 @@
 	      <label class="information-label" align="left">Product ID: </label>
 	      <input type="text" required placeholder="Product ID" ng-model="productId" class="input-field"/><br/><br/>
 	      <label class="information-label" align="left">Price: </label>
-	      <input type="text" required placeholder="0" ng-model="priceValue" class="input-field"/><br/><br/>
+	      <input type="number" required step="any" placeholder="0" ng-model="priceValue" class="input-field"/><br/><br/>
 	      <div>
 			  <label class="information-label" align="left">Currency: </label>
 			  <select ng-model="currencyCode">
@@ -24,9 +24,9 @@
 			  <br/>
 			</div> <br/>
 	      <div align="center">
-	      	<input type="submit" value="Add Product" class="button"/><br/><br/>
+	      	<input type="submit" value="Save" class="button"/><br/><br/>
 	      </div>
-	      <label class="information-label" align="left">Add Product ID and Price information in the NOSQL Data Store.</label><br>
+	      <label class="information-label" align="left">Add/Update Product ID and Price information in the NOSQL Data Store.</label><br>
       </div>
     </form><br/><br/>
   </div>
