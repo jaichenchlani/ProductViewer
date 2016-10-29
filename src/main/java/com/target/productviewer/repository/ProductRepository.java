@@ -112,11 +112,17 @@ public class ProductRepository {
 //		log.info("Entering ProductRepository.getAllProductsFromDataStore...");
 		QueryBuilder queryBuilder = QueryBuilders.matchAllQuery();
 		List<Product> productList = new ArrayList<Product>();
+		SearchResponse response = new SearchResponse();
 //		For performance reasons, run the search in small batches of 500.
 		int from =0; 
 		int batchSize = 500;
 		while(true) {
-			SearchResponse response = ElasticSearch.search(ElasticSearch.ES_INDEX, ElasticSearch.ES_TYPE, queryBuilder, from, batchSize);
+			try {
+				response = ElasticSearch.search(ElasticSearch.ES_INDEX, ElasticSearch.ES_TYPE, queryBuilder, from, batchSize);
+			} catch (Exception e){
+				log.info("Call to ElasticSearch.search failed.");
+				e.printStackTrace();
+			}
 			List<Product> thisBatchProducts = buildProductList(response);
 			productList.addAll(thisBatchProducts);
 			

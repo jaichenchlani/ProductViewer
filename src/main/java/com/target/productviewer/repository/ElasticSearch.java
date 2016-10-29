@@ -61,7 +61,8 @@ public class ElasticSearch {
     }
 
     public static SearchResponse search(String idx, String type, QueryBuilder qb, int from, int size) {
-        return esClient.prepareSearch(idx)
+        log.info("Connected Nodes: " + esClient.connectedNodes());
+    		return esClient.prepareSearch(idx)
                 .setTypes(type)
                 .setQuery(qb)
                 .setFrom(from)

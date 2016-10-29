@@ -12,6 +12,13 @@
  		font-size: 14px;
  		background-color: lightgreen;
  	}
+ 	
+ 	.sub-header-pages {
+ 		background-color: darkgreen;
+ 		color: white;
+ 		font-style: underline;	
+ 		font-weight: bold;
+ 	}
 
  	footer {
  		padding: 10px;

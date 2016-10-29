@@ -71,9 +71,12 @@ public class ProductController {
 //	Get all the product price details from the Data Store
 	@RequestMapping(value = "products", method = RequestMethod.GET)
 	public List<Product> getProducts() {
+//		Adding error handling when ElasticSearch is unreachable.
 		List<Product> productList = new ArrayList<Product>();
 		try {
+			log.info("Before calling getAllProductsFromDataStore...");
 			productList = ProductRepository.getAllProductsFromDataStore();
+			log.info("After calling getAllProductsFromDataStore...");
 		} catch (IOException e) {
 			log.info("IO Exception in ProductController.getProducts.");
 			e.printStackTrace();
