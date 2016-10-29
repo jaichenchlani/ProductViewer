@@ -47,6 +47,7 @@ public class ProductController {
 	private static ObjectMapper mapper = new ObjectMapper();
 	Product product = new Product();
 	
+//	Returning Product Details for a single product based on Product ID
 	@JsonIgnoreProperties
 	@RequestMapping(value = "products/{productId}", method = RequestMethod.GET)
 	public Product getProductById(@PathVariable(value="productId") String productId) {
@@ -67,9 +68,9 @@ public class ProductController {
 		return product;
 	}
 	
+//	Get all the product price details from the Data Store
 	@RequestMapping(value = "products", method = RequestMethod.GET)
 	public List<Product> getProducts() {
-//		Get all the product price details from the Data Store
 		List<Product> productList = new ArrayList<Product>();
 		try {
 			productList = ProductRepository.getAllProductsFromDataStore();
