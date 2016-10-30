@@ -5,10 +5,9 @@
 	
     var app = angular.module("productViewer");
 
-    function ProductListController($scope, myRetail, $location, $log, $route) {
+    function ProductListController($scope, myRetail, $location, $log, $route, $window) {
         
         var onProductListComplete = function(data){
-
 //        	$log.info("From onProductListComplete...");
         	$log.info(data);
         	$scope.products = data;
@@ -16,7 +15,8 @@
         
 //      Error Handling
         var onError = function(reason) {
-        	$scope.error = "Could not fetch the Data.";
+        	$log.info(reason);
+        	$scope.error = "Data Store not available. Please try again later.";
         };
         
 //      Refresh the product list post the Price UPDATE is complete on the back end
@@ -30,7 +30,7 @@
         
 //      Refresh the product list post the Product Price DELETE is complete on the back end
         var onDeleteProductComplete = function(data) {
-        	$log.info("From onDeleteProductComplete...");
+//        	$log.info("From onDeleteProductComplete...");
         	$log.info(data);
         	$scope.products = data;
         	myRetail.getProductList().then(onProductListComplete, onError);

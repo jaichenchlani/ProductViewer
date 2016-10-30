@@ -1,8 +1,14 @@
 package com.target.productviewer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.target.productviewer.repository.ElasticSearch;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+
 
 /**
  * Unit test for simple App.
@@ -10,7 +16,8 @@ import junit.framework.TestSuite;
 public class AppTest 
     extends TestCase
 {
-    /**
+	private static final Logger log = LoggerFactory.getLogger(AppTest.class);
+	/**
      * Create the test case
      *
      * @param testName name of the test case
@@ -31,8 +38,10 @@ public class AppTest
     /**
      * Rigourous Test :-)
      */
-    public void testApp()
-    {
-        assertTrue( true );
+    
+//    public void ValidateElasticSearchConnectivity()
+    public void test()
+    {	
+    	assertTrue( !ElasticSearch.esClient.connectedNodes().isEmpty() );
     }
 }

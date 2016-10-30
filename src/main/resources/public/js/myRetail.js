@@ -71,9 +71,9 @@
     	myUrl += productId;
     	console.log(myUrl);
 	    return $http.delete(myUrl)
-	                  .then(function(response) {
-	                    return response.data;
-	                  });
+              .then(function(response) {
+                return response.data;
+              });
     };
     
     

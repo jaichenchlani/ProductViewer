@@ -22,7 +22,7 @@ import com.target.productviewer.ProductController;
 public class ElasticSearch {
 	
 	private static final Logger log = LoggerFactory.getLogger(ProductController.class);
-	private static TransportClient esClient = null;
+	public static TransportClient esClient = null;
     public static String ES_CLUSTERNAME = "elasticsearch";
     public static String ES_HOSTS = "127.0.0.1:9300";
     public static int ES_TRANSPORT_PING_TIMEOUT_IN_SECS = 10;
@@ -36,7 +36,7 @@ public class ElasticSearch {
         }
         catch(Exception e) {
             System.out.println("Error instantiating ElasticSearchManager " +e.getMessage());
-            System.exit(1);
+//            System.exit(1);
         }
     }
 
@@ -77,7 +77,7 @@ public class ElasticSearch {
     }
 
     public static IndexResponse setDocumentById(String index, String type, String docId, String json) {
-        IndexRequestBuilder request = esClient.prepareIndex(index, type)
+    	IndexRequestBuilder request = esClient.prepareIndex(index, type)
                 .setId(docId)
                 .setSource(json);
         return request.get();

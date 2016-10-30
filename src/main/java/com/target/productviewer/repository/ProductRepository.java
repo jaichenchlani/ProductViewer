@@ -157,15 +157,15 @@ public class ProductRepository {
 		return productList;
 	}
 	
-//	public boolean createProductPrice(Price price) throws JsonProcessingException {
-//		return updateProduct(price);
-//	}
 	
 	public static boolean updateProductPrice(String productId, Price price) throws JsonProcessingException {
 //		log.info("Entering ProductRepository.updateProductPrice...");
 		price.toString();
 		try {
 			IndexResponse response = ElasticSearch.setDocumentById(ElasticSearch.ES_INDEX, ElasticSearch.ES_TYPE, productId, mapper.writeValueAsString(price));
+		} catch (NullPointerException e) {
+			log.info("ProductRepository.updateProductPrice NullPointerException...");
+			e.printStackTrace();
 		} catch (JsonParseException e) {
 			log.info("ProductRepository.updateProductPrice JsonParseException...");
 			e.printStackTrace();
