@@ -48,7 +48,7 @@
         
 //      Error Handling
         var onError = function(reason) {
-        	$scope.error = "Could not fetch the Data.";
+        	$scope.error = "Data Store not available. Please try again later.";
         };
         
 //      console.log("from ProductController..");

@@ -1,4 +1,5 @@
 <div align="center">
+  <h2 align="center" class="sub-header-pages">Search - Main</h2>
   <div>
     <form name="searchProduct" ng-submit="search(productId)" class="bordered-image math-operation-form">
       <input type="search" required placeholder="Product ID to search:" ng-model="productId" class="input-field"/>
@@ -6,4 +7,5 @@
       <label class="information-label" align="left">Enter Product ID in the search field and click Search.</label><br>
     </form>
   </div>
+  <label class="error-label" align="center" ng-model="error">{{error}}</label><br>
 </div>
