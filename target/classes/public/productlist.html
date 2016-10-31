@@ -36,7 +36,7 @@
       <td align="left">{{product.productName}}</td>
       <td align="center">{{product.price.currency_code}}</td>
       <td>
-        <input align="right" type="text" required ng-model="product.price.value"/>
+        <input align="right" type="number" required step="any" ng-model="product.price.value"/>
       </td>
       <td>
       	<input type="submit" value="Commit" ng-click="UpdatePrice(product.productId, product.price.value)"/>
